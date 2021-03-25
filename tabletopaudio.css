@@ -3,7 +3,7 @@
 /*  	  Add your styles here			*/
 /* ------------------------------------ */
 .TTA-section {
-  max-height: 4%;
+  max-height: 5%;
   overflow: hidden;
   transition: all 0.5s ease-out;
 }
@@ -21,7 +21,13 @@
 .TTA-app {
   height: 100%;
 }
-.TTA-app #grid {
-  display: grid;
-  grid-template-columns: repeat(2, 0.5fr);
+
+.TTA-logo{
+  margin:4px;
+
+}
+ button.start-server {
+  /* padding: 10px; */
+  margin: 6px;
+  width: 50%;
 }
