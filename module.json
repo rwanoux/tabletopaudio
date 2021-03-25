@@ -7,7 +7,7 @@
   "socket":true,
   "esmodules": ["tabletopaudio.js"],
   "styles": ["tabletopaudio.css"],
-  "minimumCoreVersion": "0.5.0",
+  "minimumCoreVersion": "0.7.9",
   "compatibleCoreVersion": "0.7.9",
   "url": "https://github.com/rwanoux/tabletopaudio",
   "manifest": "https://raw.githubusercontent.com/rwanoux/tabletopaudio/master/module.json",
