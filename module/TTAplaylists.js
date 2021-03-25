@@ -13,8 +13,11 @@ export default class TTAplaylists extends PlaylistDirectory {
     super.activateListeners(html);
 
     html.find("button.start-server").click((ev) => this.startTTA(ev));
-    html.find("div.TTA-section").click((ev)=> {
-      ev.currentTarget.classList.toggle("expanded")
+    html.find("img.TTA-logo").click((ev)=> {
+      if (game.user.isGM){
+        let section=ev.currentTarget.parentElement.parentElement.parentElement
+      section.classList.toggle("expanded")
+      }
     })
   }
 

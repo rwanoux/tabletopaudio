@@ -35,8 +35,12 @@ Hooks.once("init", async function () {
 
   game.socket.on("module.tabletopaudio", (data) => {
     if (data.msg == "updateTTA") {
+      /*
       console.log(data);
       var windowObjectReference = window.open(data.data.url, "_blank");
+      */
+     let TTAplayer=document.getElementById("TTAPlayer");
+     TTAplayer.src=data.data.url;
 
     }
   })

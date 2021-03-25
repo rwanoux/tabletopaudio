@@ -10,7 +10,9 @@
 .TTA-section + div.playlist-section {
     max-height: 100%;
     transition: all 0.5s ease-out;
-
+}
+.TTA-section.player {
+  max-height: 200%;
 }
 .TTA-section.expanded {
   max-height: 200%;
