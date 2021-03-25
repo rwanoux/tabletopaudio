@@ -2,7 +2,7 @@
   "name": "tabletopaudio",
   "title": "tabletopaudio",
   "description": "integre tabletopaudio yeahhhh",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "author": "rwan",
   "socket":true,
   "esmodules": ["tabletopaudio.js"],

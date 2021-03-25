@@ -17,6 +17,10 @@
 .TTA-section.expanded {
   max-height: 200%;
 }
+.TTA-section + div.playlist-section {
+  max-height: 90%;
+  overflow-y: scroll;
+}
 .TTA-section.expanded + div.playlist-section {
   max-height: 10%;
 }
