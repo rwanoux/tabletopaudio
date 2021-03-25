@@ -13,6 +13,9 @@ export default class TTAplaylists extends PlaylistDirectory {
     super.activateListeners(html);
 
     html.find("button.start-server").click((ev) => this.startTTA(ev));
+    html.find("div.TTA-section").click((ev)=> {
+      ev.currentTarget.classList.toggle("expanded")
+    })
   }
 
 
