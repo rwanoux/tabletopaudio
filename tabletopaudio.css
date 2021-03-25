@@ -2,4 +2,26 @@
 /*					CSS					*/
 /*  	  Add your styles here			*/
 /* ------------------------------------ */
+.TTA-section {
+  max-height: 4%;
+  overflow: hidden;
+  transition: all 0.5s ease-out;
+}
+.TTA-section + div.playlist-section {
+    max-height: 100%;
+    transition: all 0.5s ease-out;
 
+}
+.TTA-section:hover {
+  max-height: 200%;
+}
+.TTA-section:hover + div.playlist-section {
+  max-height: 10%;
+}
+.TTA-app {
+  height: 100%;
+}
+.TTA-app #grid {
+  display: grid;
+  grid-template-columns: repeat(2, 0.5fr);
+}

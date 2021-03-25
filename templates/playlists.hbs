@@ -1,26 +1,146 @@
 {{log this}}
-<section class="sidebar-tab tab flexcol" id="playlists" data-tab="playlists">
 
+
+<section class="sidebar-tab tab flexcol" id="playlists" data-tab="playlists">
+    <div class="TTA-section">
+        <!-- Directory Header -->
+        <header class="directory-header">
+            <div class="header-actions action-buttons flexcol">
+
+                {{#if isGM }}
+                <h2 >TableTop Audio</h2>
+                <span>
+                    <input id="TTAserverURL" name="{{TTAserverURL}}" value="{{TTAserverURL}}"
+                        placeholder="server link" />
+                    <button class="start-server"><i class="fas fa-music"></i> </button>
+                </span>
+                {{/if}}
+            </div>
+        </header>
+        {{#if isGM }}
+        <iframe id="TTA" class="TTA-app" src="https://tabletopaudio.com/soundpad.html"></iframe>
+        {{/if}}
+
+
+    </div>
+    <div class="playlist-section">
     <!-- Directory Header -->
     <header class="directory-header">
         <div class="header-actions action-buttons flexrow">
-
             {{#if isGM }}
-            <span>
-                <input id="TTAserverURL" name="{{TTAserverURL}}" value="{{TTAserverURL}}" placeholder="server link" />
-                <button class="start-server"><i class="fas fa-music"></i> </button>
-            </span>
+            <button class="create-entity"><i class="fas fa-music"></i> {{localize 'PLAYLIST.Create'}}</button>
             {{/if}}
         </div>
     </header>
-    {{#if isGM }} 
-    <iframe id="docs" src="https://tabletopaudio.com/soundpad.html"></iframe>
-    {{/if}}
-    {{#unless isGM}}
-   
-    <iframe id="playerTTA" src=""></iframe>
-   
-    {{/unless}}
-   
 
+    <!-- Directories List -->
+    <ol class="directory-list">
+        <li class="global-volume directory-item playlist flexrow">
+            <header class="playlist-header flexrow">
+                <h4>{{localize "PLAYLIST.GlobalVolume"}}</h4>
+            </header>
+
+            <ol class="playlist-sounds">
+                <li class="sound flexrow">
+                    <h4 class="sound-name">{{localize "PLAYLIST.VolPlaylist"}}</h4>
+                    <input class="global-volume-slider" name="globalPlaylistVolume" type="range" min="0" max="1"
+                        step="0.05" value="{{playlistModifier}}" />
+                </li>
+                <li class="sound flexrow">
+                    <h4 class="sound-name">{{localize "PLAYLIST.VolAmbient"}}</h4>
+                    <input class="global-volume-slider" name="globalAmbientVolume" type="range" min="0" max="1"
+                        step="0.05" value="{{ambientModifier}}" />
+                </li>
+                <li class="sound flexrow">
+                    <h4 class="sound-name">{{localize "PLAYLIST.VolInterface"}}</h4>
+                    <input class="global-volume-slider" name="globalInterfaceVolume" type="range" min="0" max="1"
+                        step="0.05" value="{{interfaceModifier}}" />
+                </li>
+            </ol>
+        </li>
+
+        {{#each entities as |playlist pid|}}
+        <li class="directory-item entity playlist flexrow {{#unless playlist.expanded}}collapsed{{/unless}}"
+            data-entity-id="{{playlist._id}}">
+            <header class="playlist-header flexrow">
+                <h4 class="playlist-name">{{playlist.name}} <i
+                        class="fa fa-angle-{{#if playlist.expanded}}down{{else}}up{{/if}}"></i></h4>
+                <div class="playlist-controls flexrow">
+
+                    {{#if @root.isGM }}
+                    <a class="sound-control" data-action="playlist-edit" title="{{localize 'PLAYLIST.Edit'}}">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a class="sound-control" data-action="playlist-add" title="{{localize 'PLAYLIST.SoundAdd'}}">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                    <a class="sound-control" data-action="playlist-delete" title="{{localize 'PLAYLIST.Delete'}}">
+                        <i class="fas fa-trash"></i></a>
+                    <a class="sound-control" data-action="playlist-mode" title="{{playlist.modeTooltip}}">
+                        {{{playlist.modeIcon}}}
+                    </a>
+                    {{/if}}
+
+                    {{#if playlist.playing}}
+                    <a class="sound-control {{playlist.controlCSS}}" data-action="playlist-stop"
+                        title="{{localize 'PLAYLIST.Stop'}}">
+                        <i class="fas fa-square"></i>
+                    </a>
+                    {{else}}
+                    <a class="sound-control {{playlist.controlCSS}}" data-action="playlist-play"
+                        title="{{localize 'PLAYLIST.Play'}}">
+                        <i class="fas fa-play"></i>
+                    </a>
+                    {{/if}}
+                </div>
+            </header>
+
+            <ol class="playlist-sounds">
+                {{#each playlist.sounds as |sound i|}}
+                <li class="sound flexrow" data-sound-id="{{sound._id}}">
+                    <h4 class="sound-name">{{sound.name}}</h4>
+                    <div class="sound-controls flexrow">
+
+                        {{#if @root.isGM}}
+                        <a class="sound-control" data-action="sound-edit" title="{{localize 'PLAYLIST.SoundEdit'}}">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        {{/if}}
+
+                        <input class="sound-volume" type="range" title="{{localize 'PLAYLIST.SoundVolume'}}"
+                            value="{{sound.lvolume}}" min="0" max="1" step="0.05" />
+
+                        {{#if @root.isGM}}
+                        <a class="sound-control" data-action="sound-delete" title="{{localize 'PLAYLIST.SoundDelete'}}">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                        {{/if}}
+
+                        <a class="sound-control {{#unless sound.repeat}}inactive{{/unless}} {{sound.controlCSS}}"
+                            data-action="sound-repeat" title="{{localize 'PLAYLIST.SoundLoop'}}">
+                            <i class="fas fa-sync"></i>
+                        </a>
+
+                        {{#if sound.playing}}
+                        <a class="sound-control {{sound.controlCSS}}" data-action="sound-stop"
+                            title="{{localize 'PLAYLIST.SoundStop'}}">
+                            <i class="fas fa-square"></i>
+                        </a>
+                        {{else}}
+
+                        <a class="sound-control {{sound.controlCSS}}" data-action="sound-play"
+                            title="{{localize 'PLAYLIST.SoundPlay'}}">
+                            <i class="fas fa-play"></i>
+                        </a>
+                        {{/if}}
+                    </div>
+                </li>
+                {{/each}}
+            </ol>
+        </li>
+        {{/each}}
+    </ol>
+    </div>
+    <!-- Directory Footer -->
+    <footer class="directory-footer"></footer>
 </section>

@@ -16,7 +16,6 @@ import { preloadTemplates } from "./module/preloadTemplates.js";
 import  TTAplaylists  from "./module/TTAplaylists.js";
 
 /* ------------------------------------ */
-
 /* Initialize module					*/
 /* ------------------------------------ */
 Hooks.once("init", async function () {
