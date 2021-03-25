@@ -13,6 +13,7 @@
 // Import JavaScript modules
 import { registerSettings } from "./module/settings.js";
 import { preloadTemplates } from "./module/preloadTemplates.js";
+import  TTAplaylists  from "./module/TTAplaylists.js";
 
 /* ------------------------------------ */
 /* Initialize module					*/
@@ -29,8 +30,17 @@ Hooks.once("init", async function () {
   await preloadTemplates();
 
   // Register custom sheets (if any)
-});
 
+  CONFIG.ui.playlists = TTAplaylists;
+
+  game.socket.on("module.tabletopaudio", (data) => {
+    if (data.msg == "updateTTA") {
+      console.log(data);
+      var windowObjectReference = window.open(data.data.url, "_blank");
+
+    }
+  })
+})
 /* ------------------------------------ */
 /* Setup module							*/
 /* ------------------------------------ */
@@ -43,23 +53,10 @@ Hooks.once("setup", function () {
 /* When ready							*/
 /* ------------------------------------ */
 Hooks.once("ready", function () {
-  let button = document.createElement("div");
 
-  button.id = "TTA";
-  buton.innerHTML =
-    '<button style="position:absolute; bottom:0px; right:200px">ouvrir tabletopaudio</button>';
-  let TTA = new FrameViewer(
-    "https://tabletopaudio.com/alien_starship_sp.html",
-    {
-      title: "tabletopaudio",
-    }
-  );
-  button.addEventListener("click", function () {
-    TTA.render(true);
-  });
-  document.body.append(button);
 
   // Do anything once the module is ready
 });
+
 
 // Add any additional hooks if necessary

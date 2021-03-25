@@ -1,0 +1,26 @@
+{{log this}}
+<section class="sidebar-tab tab flexcol" id="playlists" data-tab="playlists">
+
+    <!-- Directory Header -->
+    <header class="directory-header">
+        <div class="header-actions action-buttons flexrow">
+
+            {{#if isGM }}
+            <span>
+                <input id="TTAserverURL" name="{{TTAserverURL}}" value="{{TTAserverURL}}" placeholder="server link" />
+                <button class="start-server"><i class="fas fa-music"></i> </button>
+            </span>
+            {{/if}}
+        </div>
+    </header>
+    {{#if isGM }} 
+    <iframe id="docs" src="https://tabletopaudio.com/soundpad.html"></iframe>
+    {{/if}}
+    {{#unless isGM}}
+   
+    <iframe id="playerTTA" src=""></iframe>
+   
+    {{/unless}}
+   
+
+</section>
