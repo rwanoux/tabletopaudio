@@ -19,10 +19,12 @@
             </div>
         </header>
         {{#if isGM }}
-        <iframe id="TTA" class="TTA-app" src="https://tabletopaudio.com/soundpad.html"></iframe>
+        <iframe  id="TTA" class="TTA-app" src="https://tabletopaudio.com/soundpad.html"></iframe>
         {{/if}}
         {{#unless isGM}}
-        <iframe id="TTAPlayer" class="TTA-app" src=""></iframe>
+                <span id="broadcast-msg">GM isn't broadcasting any soundpad yet</span>
+
+        <iframe id="TTA-Player" class="TTA-app" src="" ></iframe>
 
         {{/unless}}
 

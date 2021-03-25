@@ -40,3 +40,6 @@ input#TTAserverURL{
   margin: 6px;
   width: 50%;
 }
+.TTA-hidden{
+  display:none
+}

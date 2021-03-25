@@ -39,7 +39,9 @@ Hooks.once("init", async function () {
       console.log(data);
       var windowObjectReference = window.open(data.data.url, "_blank");
       */
-     let TTAplayer=document.getElementById("TTAPlayer");
+     let TTAplayer=document.getElementById("TTA-Player");
+     let mess=document.getElementById("broadcast-msg");
+     mess.classList.toggle("TTA-hidden");
      TTAplayer.src=data.data.url;
 
     }
