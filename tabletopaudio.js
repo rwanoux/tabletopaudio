@@ -13,7 +13,7 @@
 // Import JavaScript modules
 import { registerSettings } from "./module/settings.js";
 import { preloadTemplates } from "./module/preloadTemplates.js";
-import  TTAplaylists  from "./module/TTAplaylists.js";
+import TTAapp from "./module/TTAapp.js";
 
 /* ------------------------------------ */
 /* Initialize module					*/
@@ -29,24 +29,19 @@ Hooks.once("init", async function () {
   // Preload Handlebars templates
   await preloadTemplates();
 
-  // Register custom sheets (if any)
-
-  CONFIG.ui.playlists = TTAplaylists;
-
   game.socket.on("module.tabletopaudio", (data) => {
     if (data.msg == "updateTTA") {
-      /*
-      console.log(data);
-      var windowObjectReference = window.open(data.data.url, "_blank");
-      */
-     let TTAplayer=document.getElementById("TTA-Player");
-     let mess=document.getElementById("broadcast-msg");
-     mess.classList.toggle("TTA-hidden");
-     TTAplayer.src=data.data.url;
-
+      let TTAplayer = document.getElementById("TTA-Player");
+      let mess = document.getElementById("broadcast-msg");
+      mess.classList.add("TTA-hidden");
+      TTAplayer.src = data.data.url;
+      console.log(TTAplayer);
+      document.getElementById("sidebar").classList.add("TTA-abled");
+      document.getElementById("TTA-section").classList.add("expanded");
+      document.getElementById("TTA-section").scroll(0,400)
     }
-  })
-})
+  });
+});
 /* ------------------------------------ */
 /* Setup module							*/
 /* ------------------------------------ */
@@ -58,11 +53,12 @@ Hooks.once("setup", function () {
 /* ------------------------------------ */
 /* When ready							*/
 /* ------------------------------------ */
-Hooks.once("ready", function () {
-
-
+Hooks.once("ready", async function () {
   // Do anything once the module is ready
-});
 
+  ui.TTA = new TTAapp();
+  ui.TTA.render(true);
+ 
+});
 
 // Add any additional hooks if necessary

@@ -1,12 +1,16 @@
 
 
-export default class TTAplaylists extends PlaylistDirectory {
-  get template() {
-    return "modules/tabletopaudio/templates/playlists.hbs";
-  }
+export default class TTAapp extends Application {
+  static get defaultOptions() {
+    return mergeObject(super.defaultOptions, {
+    template: "modules/tabletopaudio/templates/TTA.hbs",
+    popOut: false,
+  });
+}
   getData() {
     let data = super.getData();
     data.TTAserverURL;
+    data.isGM=game.user.isGM;
     return data;
   }
   activateListeners(html) {
@@ -14,10 +18,11 @@ export default class TTAplaylists extends PlaylistDirectory {
 
     html.find("button.start-server").click((ev) => this.startTTA(ev));
     html.find("img.TTA-logo").click((ev)=> {
-      if (game.user.isGM){
+    
         let section=ev.currentTarget.parentElement.parentElement.parentElement
-      section.classList.toggle("expanded")
-      }
+      section.classList.toggle("expanded");
+      document.getElementById("sidebar").classList.toggle("TTA-abled");
+     
     })
   }
 
