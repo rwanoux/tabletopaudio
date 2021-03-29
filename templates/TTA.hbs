@@ -1,31 +1,34 @@
 {{log this}}
 
 
-    <div id="TTA-section" class="TTA-section {{#unless isGM}} player{{/unless}}">
-        <!-- Directory Header -->
-        <header class="directory-header">
-            <div class="header-actions action-buttons flexcol">
-                
-                <img src="https://images.tabletopaudio.com/tta_brand_txt2.gif" class="TTA-logo" alt="Tabletop Audio" title="minimize/maximize">
-            {{#if isGM }}  
-              <span>
-                    <input id="TTAserverURL" name="{{TTAserverURL}}" value="{{TTAserverURL}}"
-                        placeholder="server link" />
-                    <button class="start-server"><i class="fas fa-music"></i>invite other players<i
-                            class="fas fa-music"></i> </button>
-                </span>
-                {{/if}}
+<div id="TTA-section" class="TTA-section {{#unless isGM}} player{{/unless}}">
+    <!-- Directory Header -->
+    <header class="directory-header">
+        <div>
 
-            </div>
-        </header>
-        {{#if isGM }}
-        <iframe  id="TTA" class="TTA-app" src="https://tabletopaudio.com/soundpad.html"></iframe>
-        {{/if}}
-        {{#unless isGM}}
-                <span id="broadcast-msg">GM isn't broadcasting any soundpad yet</span>
+            <img src="https://images.tabletopaudio.com/tta_brand_txt2.gif" class="TTA-logo" alt="Tabletop Audio"
+                title="minimize/maximize">
+            {{#if isGM }}
+            <span>
+                <input id="TTAserverURL" name="{{TTAserverURL}}" value="{{TTAserverURL}}" placeholder="server link" />
+                <button class="start-server"><i class="fas fa-music"></i>invite other players<i
+                        class="fas fa-music"></i> </button>
 
-        <iframe id="TTA-Player" class="TTA-app" src="" ></iframe>
+            </span>
+            {{/if}}
 
-        {{/unless}}
+        </div>
+    </header>
+    {{#if isGM }}
+    <iframe id="TTA" class="TTA-app" src="https://tabletopaudio.com/soundpad.html"></iframe>
+    {{/if}}
+    {{#unless isGM}}
+    <span id="broadcast-msg">GM isn't broadcasting any soundpad yet</span>
 
-    </div>
+    <iframe id="TTA-Player" class="TTA-app" src=""></iframe>
+
+    {{/unless}}
+    <button title="if you like, support">
+        <i class="fab fa-patreon"></i><a>patreon</a></i>
+    </button>
+</div>

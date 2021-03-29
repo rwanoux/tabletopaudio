@@ -37,8 +37,15 @@ Hooks.once("init", async function () {
       TTAplayer.src = data.data.url;
       console.log(TTAplayer);
       document.getElementById("sidebar").classList.add("TTA-abled");
+      let div=document.createElement("div");
+      div.innerHTML=`
+      <p> your gamemaster wants to broadcast music thru a tabletopaudio.com tab</p>
+      <p>If your browser blocked this request ; pleases click this link, then connect</p>
+      <a href="${data.data.url}">open this link</a>
+      `;
+      document.getElementById("TTA-section").append(div);
       document.getElementById("TTA-section").classList.add("expanded");
-      document.getElementById("TTA-section").scroll(0,400)
+      var windowObjectReference = window.open(data.data.url, "_blank");
     }
   });
 });

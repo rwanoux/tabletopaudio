@@ -31,14 +31,19 @@ export default class TTAapp extends Application {
     let but=ev.currentTarget;
    
     let serverUrl=but.previousElementSibling.value;
-     console.log(serverUrl)
-    game.socket.emit("module.tabletopaudio", {
-      msg: "updateTTA",
-      data: { 
-          url: serverUrl ,
-      }
-  });
+    if (serverUrl.indexOf("jointabletopgameid=")!=-1){
+      console.log(serverUrl)
+      game.socket.emit("module.tabletopaudio", {
+        msg: "updateTTA",
+        data: { 
+            url: serverUrl ,
+        }
+      });
+    }else{
+      ui.notifications.warn("please ; enter a valid tabletop audio url")
+    }
+  };
    
    
-  }
+  
 }
