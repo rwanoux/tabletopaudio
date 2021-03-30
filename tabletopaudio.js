@@ -65,7 +65,16 @@ Hooks.once("ready", async function () {
 
   ui.TTA = new TTAapp();
   ui.TTA.render(true);
+
+  let TTAframe= document.getElementById("TTA");
+  console.log(TTAframe)
  
 });
 
 // Add any additional hooks if necessary
+Hooks.once("renderApplication", async function (app, html, data) {
+
+  let TTAframe= document.getElementById("TTA");
+  console.log(TTAframe)
+
+})

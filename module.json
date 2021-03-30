@@ -2,7 +2,7 @@
   "name": "tabletopaudio",
   "title": "tabletopaudio",
   "description": "integreted tabletopaudio soundpads",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "author": "rwan",
   "socket":true,
   "esmodules": ["tabletopaudio.js"],
